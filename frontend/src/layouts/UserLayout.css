@@ -1,0 +1,94 @@
+.side-nav {
+  border-right: 1px solid #656565;
+}
+.header {
+  border-bottom: 1px solid #656565;
+  height: 15%;
+}
+.logo-container {
+  height: 20%;
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 20%;
+}
+.logo {
+  height: 80%;
+  width: 80%;
+}
+.label {
+  margin-left: 10%;
+}
+.label label {
+  margin-top: 10%;
+  margin-left: 3%;
+  margin-bottom: 3%;
+}
+
+.label:hover .icon,
+.label:hover label {
+  /* Define styles for when the parent is hovered */
+  color: rgb(39, 122, 201); /* Color change on hover */
+}
+
+/* Focus effect */
+.label:focus .icon,
+.label:focus label {
+  /* Define styles for when the parent is focused */
+  color: rgb(39, 122, 201); /* Color change on focus */
+}
+.label:hover {
+  color: rgb(39, 122, 201);
+}
+.label-container .label {
+  position: relative; /* Ensure positioning context for pseudo-element */
+}
+
+.label-container .label::after {
+  content: ""; /* Create pseudo-element for the border bottom */
+  position: absolute;
+  bottom: 0;
+  left: 0; /* Initially positioned at the left */
+  width: 0;
+  height: 4px; /* Adjust height as needed */
+  background-color: rgb(39, 122, 201); /* Initial color of the border */
+  transition: width 0.5s ease; /* Transition property */
+}
+
+.label-container .label:hover::after,
+.label-container .label:focus::after {
+  width: 100%; /* Expand width to the right */
+}
+.label-container {
+  width: 85%;
+}
+.search-container {
+  width: 45%;
+  height: 45%;
+  background-color: #f6f6f6;
+  border: 1px solid black;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+}
+.search-bar {
+  width: 85%;
+  margin-left: 2%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: black;
+}
+.search-icon {
+  margin-left: 2%;
+  background-color: blue';
+}
+.profile-container{
+  background-color: aqua;
+  height: 60%;
+  width: 8%;
+  margin-right: 3%;
+}
+.profile{
+  border-radius: 100%;
+  border: 3px solid white;
+}
