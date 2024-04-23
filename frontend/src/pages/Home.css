@@ -1,0 +1,9 @@
+.filter {
+  border-bottom: 3px solid transparent; /* Initially transparent */
+  transition: border-color 0.3s ease; /* Transition effect */
+}
+
+.filter:hover,
+.filter:focus {
+  border-color: rgb(39, 122, 201); /* Border color on hover or focus */
+}

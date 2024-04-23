@@ -10,17 +10,21 @@ import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "primereact/button";
 import Logo from "../images/logonimo.png";
 import profile from "../images/dog.jpg";
 function UserLayout() {
   return (
     <Container fluid className="vh-100">
-      <Row className="d-flex flex-row flex-grow-1">
+      <Row className="d-flex flex-row flex-grow-1 h-100">
         <Col xs={2} className="side-nav">
           <div className="logo-container d-flex flex-column align-items-center">
             <div className="logo">
               <img src={Logo} alt="" className="w-100 h-100" />
             </div>
+          </div>
+          <div className="w-100 p-1 mx-2 mb-3">
+            <Button label="+ New" className="w-50" />
           </div>
           <div className="label-container d-flex flex-column">
             <div className="label" tabindex="0">
@@ -45,14 +49,13 @@ function UserLayout() {
             </div>
           </div>
         </Col>
-
         <Col>
           <Row className="header">
             <Col>
               <div className="w-100 h-100 d-flex fleX-column align-items-center">
                 <div className=" search-container">
                   <div className="search-icon">
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <span className="pi pi-search"></span>
                   </div>
                   <input type="text" className="search-bar" />
                 </div>
@@ -70,8 +73,6 @@ function UserLayout() {
               </div>
             </Col>
           </Row>
-
-          {/* Body */}
           <Row>
             <Col>
               <Outlet />

@@ -9,7 +9,7 @@
   height: 20%;
   width: 100%;
   margin-top: 5%;
-  margin-bottom: 20%;
+  margin-bottom: 10%;
 }
 .logo {
   height: 80%;
@@ -27,7 +27,7 @@
 .label:hover .icon,
 .label:hover label {
   /* Define styles for when the parent is hovered */
-  color: rgb(39, 122, 201); /* Color change on hover */
+  color: rgb(109, 143, 175);/* Color change on hover */
 }
 
 /* Focus effect */
@@ -37,7 +37,7 @@
   color: rgb(39, 122, 201); /* Color change on focus */
 }
 .label:hover {
-  color: rgb(39, 122, 201);
+  color: rgb(109, 143, 175);
 }
 .label-container .label {
   position: relative; /* Ensure positioning context for pseudo-element */

@@ -12,3 +12,44 @@
   font-size: 1.5rem;
   font-weight: 700;
 }
+body {
+  overflow: hidden;
+}
+.login-container {
+  height: 80%;
+  padding: 3%;
+  width: 30%;
+}
+.sign-in {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+.p-inputtext {
+  background-color: transparent;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  width: 52vh;
+  padding: 2%;
+}
+.p-icon {
+  right: 10px;
+  top: 30%;
+}
+.p-button {
+  background-color: #111111;
+  color: white;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transform to transition */
+}
+
+.p-button:hover {
+  background-color: rgb(39, 122, 201);
+  transform: scale(1.1); /* Increase size on hover */
+}
+
+.p-button-label {
+  background: transparent;
+}
