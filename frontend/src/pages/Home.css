@@ -1,9 +1,16 @@
 .filter {
   border-bottom: 3px solid transparent; /* Initially transparent */
   transition: border-color 0.3s ease; /* Transition effect */
+  color: white;
+  cursor: pointer;
 }
 
 .filter:hover,
 .filter:focus {
   border-color: rgb(39, 122, 201); /* Border color on hover or focus */
+}
+.welcome h1{
+  font-weight: 800;
+  color: white;
+  cursor: default;
 }

@@ -30,7 +30,7 @@ function Login() {
         <Col className="w-100  d-flex justify-content-center">
           <div className=" login-container">
             <div className="w-100 d-flex justify-content-center mb-5">
-              <label className="sign-in">Sign in</label>
+              <label className="sign-in">Sign <span className="in-up">in</span></label>
             </div>
             <div className="field d-flex df-column mb-4 w-100">
               <FloatLabel>
@@ -55,16 +55,16 @@ function Login() {
                 <label htmlFor="username">Password</label>
               </FloatLabel>
             </div>
-            <div className="w-100 mb-5">
-              <Button label="Submit" onClick={handleLogin} className="w-100" />
+            <div className="d-flex justify-content-center w-100 mb-5">
+              <Button label="Submit" onClick={handleLogin} className="w-100"/>
             </div>
-            <div>
+            <div className="acc w-100">
               <label>
                 Don't have an account?{" "}
-                <a onClick={() => navigate("/register")}>Sign up</a>
+                <span className="sign-up"><a onClick={() => navigate("/register")}>Sign up</a></span>
               </label>
             </div>
-          </div>
+          </div>  
         </Col>
       </Row>
     </Container>

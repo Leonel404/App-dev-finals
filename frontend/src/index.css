@@ -3,5 +3,26 @@
   margin: 0;
   font-family: "Poppins", sans-serif;
   background-color: #111111;
-  color: white;
+}
+.MuiList-root span{
+z-index: -1;
+}
+#basic-menu, .MuiBackdrop-root {
+  background-color: transparent;
+  color: white !important;
+}
+.MuiList-root{
+  border: 2px solid rgb(39, 122, 201);
+  border-radius: 15px;
+  padding: 5px !important;
+  height: 150px;
+  width: 175px;
+}
+.MuiPaper-root{
+  background: none !important;
+  top: 100px !important;
+  left: 80px !important;
+}
+.MuiButtonBase-root:hover{
+  background-color: rgb(39, 122, 201) !important;
 }
