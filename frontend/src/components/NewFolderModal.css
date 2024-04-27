@@ -1,0 +1,13 @@
+.btn-close{
+ background-color: white;
+}
+.modal-container{
+    position: absolute;
+    left:38%;
+    top: 25%;
+    border-radius: 20px;
+    border:2px solid rgb(39, 122, 201);
+}
+.btn-create{
+    margin-left: 35%;
+}

@@ -38,6 +38,9 @@
   /* Define styles for when the parent is focused */
   color: rgb(39, 122, 201); /* Color change on focus */
 }
+.label .focus {
+  color: rgb(39, 122, 201) !important;
+}
 .label:hover {
   color: rgb(109, 143, 175);
 }

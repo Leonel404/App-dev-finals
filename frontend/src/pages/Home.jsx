@@ -11,7 +11,7 @@ function Home() {
           <div className="welcome">
             <h1 className="mt-3 mx-2">Welcome to Drive</h1>
           </div>
-          <div className="w-100 d-flex gap-3 px-5">
+          <div className="filter-container w-100 d-flex gap-3 px-5">
             <div className="filter ">
               <label htmlFor="">Files</label>
             </div>

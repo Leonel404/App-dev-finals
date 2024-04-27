@@ -1,14 +1,21 @@
-.filter {
+.filter-container .filter {
   border-bottom: 3px solid transparent; /* Initially transparent */
-  transition: border-color 0.3s ease; /* Transition effect */
+  transition: border-color 0.5s ease; /* Transition effect */
   color: white;
   cursor: pointer;
 }
 
-.filter:hover,
-.filter:focus {
-  border-color: rgb(39, 122, 201); /* Border color on hover or focus */
+.filter-container container {
+  cursor: pointer;
 }
+
+.filter-container .filter:hover,
+.filter-container .filter:focus {
+  border-color: rgb(39, 122, 201); /* Border color on hover or focus */
+  transition: border-color 0.5s ease; /* Left to right transition */
+  color:rgb(39, 122, 201);
+}
+
 .welcome h1{
   font-weight: 800;
   color: white;

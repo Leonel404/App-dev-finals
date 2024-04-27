@@ -8,6 +8,9 @@ import UserLayout from "./layouts/UserLayout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import SharedFiles from './pages/SharedFiles';
+import MyDrive from './pages/MyDrive';
+import Trash from './pages/Trash';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,6 +19,18 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/mydrive",
+        element: <MyDrive />,
+      },
+      {
+        path: "/sharedwithme",
+        element: <SharedFiles />,
+      },
+      {
+        path: "/trash",
+        element: <Trash />,
       },
     ],
   },
