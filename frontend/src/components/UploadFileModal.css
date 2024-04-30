@@ -1,0 +1,18 @@
+.FileUpload-container{
+    width: 38% !important;
+    height: 60% !important;
+
+}
+.modalFooter{
+    background-color: #111111 !important;
+}
+.modal-body{
+    height: 25vh !important
+    
+}
+.modal-title{
+    color: white !important;
+}
+.file{
+    color: white;
+}

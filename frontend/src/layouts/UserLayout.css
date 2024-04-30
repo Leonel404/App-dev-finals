@@ -98,7 +98,7 @@
 }
 .profile{
   border-radius: 100%;
-  width: 41px;
+  width: 45px !important;
   margin-right: 30% !important;
 }
 .profile-pic{
@@ -108,6 +108,7 @@
 }
 .profile-pic:hover{
   border: 5px solid rgb(39, 122, 201);
+  width: 54px !important;
 }
 
 

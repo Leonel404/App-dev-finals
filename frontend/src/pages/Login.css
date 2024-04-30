@@ -20,6 +20,12 @@ body {
   padding: 3%;
   width: 30%;
 }
+.login-container2 {
+  height: 80%;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 30%;
+}
 .sign-in {
   font-size: 3.5rem;
   font-weight: 600;
@@ -73,6 +79,5 @@ body {
 }
 .acc{
   display: flex;
-  align-items: center;
   justify-content: center;
 }

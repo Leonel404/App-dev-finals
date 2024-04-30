@@ -9,12 +9,16 @@ import { Password } from "primereact/password";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 function register() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [conpassword, setConpassword] = useState("");
   const navigate = useNavigate();
   const handleLogin = () => {
     const userData = {
+      firstName,
+      lastName,
       email,
       password,
     };
@@ -29,9 +33,29 @@ function register() {
       </Row>
       <Row className="vh-100">
         <Col className="w-100  d-flex justify-content-center">
-          <div className=" login-container">
+          <div className=" login-container2">
             <div className="w-100 d-flex justify-content-center mb-3">
               <label className="sign-in">Sign <span className="in-up">up</span></label>
+            </div>
+            <div className="field d-flex df-column mb-4 w-100">
+              <FloatLabel>
+                <InputText
+                  id="firstName"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+                <label >First Name</label>
+              </FloatLabel>
+            </div>
+            <div className="field d-flex df-column mb-4 w-100">
+              <FloatLabel>
+                <InputText
+                  id="email"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+                <label htmlFor="username">Last Name</label>
+              </FloatLabel>
             </div>
             <div className="field d-flex df-column mb-4 w-100">
               <FloatLabel>
@@ -73,8 +97,8 @@ function register() {
             </div>
             <div className="acc">
               <label >
-                Don't have an account?{" "}
-                <span className="sign-up"><a onClick={() => navigate("/login")}>Sign up</a></span>
+                Already have an account?{" "}
+                <span className="sign-up"><a onClick={() => navigate("/login")}>Sign in</a></span>
               </label>
             </div>
           </div>

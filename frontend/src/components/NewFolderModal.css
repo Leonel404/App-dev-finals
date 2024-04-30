@@ -1,10 +1,11 @@
 .btn-close{
- background-color: white;
+ background-color: rgb(197, 54, 54) !important;
+ border: 2px solid rgb(231, 58, 58) !important;
 }
 .modal-container{
     position: absolute;
-    left:38%;
-    top: 25%;
+    left:38% !important;
+    top: 25% !important;
     border-radius: 20px;
     border:2px solid rgb(39, 122, 201);
 }
