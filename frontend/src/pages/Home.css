@@ -21,3 +21,7 @@
   color: white;
   cursor: default;
 }
+.card-container{
+  overflow: auto !important;
+
+}

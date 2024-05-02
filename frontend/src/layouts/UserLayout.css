@@ -29,7 +29,7 @@
 .label:hover .icon,
 .label:hover label {
   /* Define styles for when the parent is hovered */
-  color: rgb(109, 143, 175);/* Color change on hover */
+  color: rgb(109, 143, 175); /* Color change on hover */
 }
 
 /* Focus effect */
@@ -89,38 +89,62 @@
   margin-left: 2%;
   margin-top: 1%;
   background-color: transparent !important;
-  
 }
-.profile-container{
-  height: 57%;
-  width: 7%;
+.profile-container {
+  height: 53px;
+  width: 54px;
   margin-right: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.profile{
+.profile {
   border-radius: 100%;
   width: 45px !important;
+  height: 45px !important;
   margin-right: 30% !important;
 }
-.profile-pic{
-    border: 5px solid transparent;
-    border-radius: 100px;
-
+.profile-pic {
+  border: 5px solid transparent;
+  border-radius: 100px;
+  width: 5;
 }
-.profile-pic:hover{
+.profile-pic:hover {
   border: 5px solid rgb(39, 122, 201);
-  width: 54px !important;
 }
 
+.dropdown {
+  height: 44px;
+  background: none;
+}
 
-.MuiButtonBase-root{
+.MuiButtonBase-root {
   color: white !important;
 }
-.label label, .label svg{
+.label label,
+.label svg {
   color: white;
 }
-.line{
+.line {
   border: solid 1px white !important;
- 
   margin-top: 5px;
-
+}
+.drp-dwn{
+  position: 'absolute';
+  top: 0;
+  left: 0;
+}
+.menu-profile{
+  background-color: #111111 !important ;
+  border: 2px solid rgb(39, 122, 201) !important;
+  padding: 5px !important;
+}
+.menu-label{
+  color: white !important;
+}
+.menu-label:hover{
+  background-color: rgb(39, 122, 201)  !important;
+}
+.NewFolderModal{
+  overflow: hidden;
 }

@@ -16,7 +16,8 @@ import { useNavigate } from "react-router-dom";
 import NewFolderModal from "../components/NewFolderModal"; // Import the modal component
 import UploadFileModal from "../components/UploadFileModal"; // Import the upload file modal component
 import UploadFolderModal from "../components/UploadFolderModal"; // Import the upload folder modal component
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function UserLayout() {
   const location = useLocation();
@@ -95,10 +96,16 @@ function UserLayout() {
               MenuListProps={{
                 "aria-labelledby": "basic-button",
               }}
+              style={{overflow:'hidden !importat'}}
             >
-              <MenuItem onClick={handleOpenModal}>New Folder</MenuItem>
-              <MenuItem onClick={handleOpenUploadFileModal}>Upload File</MenuItem>
-              <MenuItem onClick={handleOpenUploadFolderModal}>Upload Folder</MenuItem>
+              <MenuItem onClick={handleOpenModal} className="NewFolderModal">New Folder</MenuItem>
+              <hr className="line"/>
+              <MenuItem onClick={handleOpenUploadFileModal} className="NewUploadFile">
+                Upload File
+              </MenuItem>
+              <MenuItem onClick={handleOpenUploadFolderModal} className="NewFolderFile">
+                Upload Folder
+              </MenuItem>
             </Menu>
           </div>
           <div className="label-container d-flex flex-column">
@@ -152,11 +159,33 @@ function UserLayout() {
                 <div className="w-100 h-100 d-flex align-items-center justify-content-end">
                   <div className="profile-container">
                     <div className="profile-pic w-100 h-100">
-                      <img
-                        src={profile}
-                        alt="profile picture"
-                        className="profile h-100"
-                      />
+                      <Dropdown className="dropdown">
+                        <img
+                          src={profile}
+                          alt="profile picture"
+                          className="profile h-100"
+                        />
+                        <Dropdown.Toggle
+                          variant="success"
+                          id="dropdown-basic"
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "45px",
+                            height: "45px",
+                            opacity: 0
+                          }}
+                        ></Dropdown.Toggle>
+                        <Dropdown.Menu className="menu-profile">
+                          <Dropdown.Item href="#/action-1" className="menu-label">
+                            Profile
+                          </Dropdown.Item>
+                          <Dropdown.Item href="#/action-2" className="menu-label">
+                            Log out
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </div>
                   </div>
                 </div>
@@ -173,9 +202,15 @@ function UserLayout() {
       {/* Render the NewFolderModal component */}
       <NewFolderModal isOpen={isModalOpen} onClose={handleCloseModal} />
       {/* Render the UploadFileModal component */}
-      <UploadFileModal isOpen={isUploadFileModalOpen} onClose={handleCloseUploadFileModal} />
+      <UploadFileModal
+        isOpen={isUploadFileModalOpen}
+        onClose={handleCloseUploadFileModal}
+      />
       {/* Render the UploadFolderModal component */}
-      <UploadFolderModal isOpen={isUploadFolderModalOpen} onClose={handleCloseUploadFolderModal} />
+      <UploadFolderModal
+        isOpen={isUploadFolderModalOpen}
+        onClose={handleCloseUploadFolderModal}
+      />
     </Container>
   );
 }

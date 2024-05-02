@@ -7,6 +7,7 @@ import { InputText } from "primereact/inputtext";
 import { FloatLabel } from "primereact/floatlabel";
 import { Password } from "primereact/password";
 import { Button } from "primereact/button";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
@@ -15,8 +16,15 @@ function Login() {
   const handleLogin = () => {
     const userData = {
       email,
-      password,
+      password
     };
+    axios.post('http://127.0.0.1:8000/api/login',userData)
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error=> {
+        console.log(error)
+      })
   };
   return (
     <Container fluid className="vh-100">
@@ -37,7 +45,6 @@ function Login() {
                 <InputText
                   id="email"
                   value={email}
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <label htmlFor="username">Email</label>
@@ -56,7 +63,7 @@ function Login() {
               </FloatLabel>
             </div>
             <div className="d-flex justify-content-center w-100 mb-5">
-              <Button label="Submit" onClick={handleLogin} className="w-100"/>
+              <Button label="Submit" className="w-100" onClick={handleLogin}/>
             </div>
             <div className="acc w-100">
               <label>

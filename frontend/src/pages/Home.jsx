@@ -1,12 +1,12 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./Home.css";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
+import Card from '../components/Card';
+
 function Home() {
   return (
-    <Container fluid className="vh-100 g-0">
-      <Row className=" h-25">
+    <Container fluid className=" g-0">
+      <Row className=" h-25 mb-3">
         <Col className="h-100">
           <div className="welcome">
             <h1 className="mt-3 mx-2">Welcome to Drive</h1>
@@ -21,14 +21,13 @@ function Home() {
           </div>
         </Col>
       </Row>
-      <Row className=" h-100">
-        <Col className="d-flex justify-content-center">
-          <div className="table-container w-75 ">
-            <DataTable>
-              <Column field="name" header="Name"></Column>
-              <Column field="price" header="Owner" body=""></Column>
-              <Column field="category" header="Location"></Column>
-            </DataTable>
+      <Row className=" pb-5">
+        <Col className="d-flex h-100">
+          <div className="card-container h-100 w-100 d-flex "> 
+          <Card title="Card Title" content="This is the content of the card." />
+          <Card title="Card Title" content="This is the content of the card." />
+          <Card title="Card Title" content="This is the content of the card." />
+          <Card title="Card Title" content="This is the content of the card." />
           </div>
         </Col>
       </Row>

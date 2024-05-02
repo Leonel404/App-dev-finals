@@ -1,18 +1,24 @@
 .FileUpload-container{
     width: 38% !important;
     height: 60% !important;
+    left: 30% !important;
+    top: 25% !important;
+    border-radius: 25px;
+    border: 2px solid rgb(39, 122, 201);
 
 }
 .modalFooter{
     background-color: #111111 !important;
 }
 .modal-body{
-    height: 25vh !important
-    
+    height: 25vh !important;
 }
 .modal-title{
     color: white !important;
 }
 .file{
     color: white;
+}
+.delete-btn{
+    margin-left:40% ;
 }

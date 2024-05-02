@@ -8,6 +8,9 @@ import { FloatLabel } from "primereact/floatlabel";
 import { Password } from "primereact/password";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 function register() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -15,16 +18,27 @@ function register() {
   const [password, setPassword] = useState("");
   const [conpassword, setConpassword] = useState("");
   const navigate = useNavigate();
-  const handleLogin = () => {
+  const handleRegister = () => {
     const userData = {
       firstName,
       lastName,
       email,
       password,
     };
+    axios.post('http://127.0.0.1:8000/api/register',userData)
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error=> {
+        toast.error(error)
+      })
+      .finally(()=>{
+        toast("Test")
+      })
   };
   return (
     <Container fluid className="vh-100">
+      <ToastContainer/>
       <Row className="header-container">
         <Col className="login-header w-100 h-100 d-flex align-items-center">
           <img src={Logo} alt="" className="login-logo" />
@@ -93,7 +107,7 @@ function register() {
               </FloatLabel>
             </div>
             <div className="d-flex justify-content-center w-100 mb-5">
-              <Button label="Submit" onClick={handleLogin} className="w-100" />
+              <Button label="Submit" onClick={handleRegister} className="w-100" />
             </div>
             <div className="acc">
               <label >
