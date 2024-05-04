@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import "./UserLayout.css";
@@ -18,7 +18,6 @@ import UploadFileModal from "../components/UploadFileModal"; // Import the uploa
 import UploadFolderModal from "../components/UploadFolderModal"; // Import the upload folder modal component
 import { useLocation } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
-
 function UserLayout() {
   const location = useLocation();
   const pathname = location.pathname;
@@ -68,6 +67,14 @@ function UserLayout() {
   const handleCloseUploadFolderModal = () => {
     setIsUploadFolderModalOpen(false);
   };
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/user')
+      .then(response => response.json())
+      .then(data => setUser(data))
+      .catch(error => console.error('Error fetching user:', error));
+  }, []);
 
   return (
     <Container fluid className="vh-100">
@@ -111,7 +118,7 @@ function UserLayout() {
           <div className="label-container d-flex flex-column">
             <div
               className={`label`}
-              tabindex="0"
+              tabIndex="0"
               onClick={() => navigate("/home")}
             >
               <FontAwesomeIcon icon={faHome} className="icon" />
@@ -156,7 +163,12 @@ function UserLayout() {
                   </div>
                   <input type="text" className="search-bar" />
                 </div>
-                <div className="w-100 h-100 d-flex align-items-center justify-content-end">
+                {user && (
+                  <div className="w-100 h-100 d-flex align-items-center justify-content-end">
+                <div className="name-container d-flex justify-content-between">
+                    <div><label style={{color: 'white', fontSize:'15px', marginRight: '10px'}}>{user.firstName}</label></div>
+                    <div><label style={{color: 'white', fontSize:'15px', marginRight: '10px'}}>{user.lastName}</label></div>
+                </div>  
                   <div className="profile-container">
                     <div className="profile-pic w-100 h-100">
                       <Dropdown className="dropdown">
@@ -189,6 +201,8 @@ function UserLayout() {
                     </div>
                   </div>
                 </div>
+                )}
+                
               </div>
             </Col>
           </Row>

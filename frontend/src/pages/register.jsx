@@ -24,21 +24,38 @@ function register() {
       lastName,
       email,
       password,
+      conpassword,
     };
     axios.post('http://127.0.0.1:8000/api/register',userData)
       .then(response => {
         console.log(response.data)
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setPassword('')
+        setConpassword('')
+        navigate('/login')
       })
       .catch(error=> {
-        toast.error(error)
+        toast.error(error.message)
       })
-      .finally(()=>{
-        toast("Test")
-      })
+    
   };
   return (
     <Container fluid className="vh-100">
-      <ToastContainer/>
+      <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      transition: Bounce
+      />
       <Row className="header-container">
         <Col className="login-header w-100 h-100 d-flex align-items-center">
           <img src={Logo} alt="" className="login-logo" />
@@ -64,7 +81,7 @@ function register() {
             <div className="field d-flex df-column mb-4 w-100">
               <FloatLabel>
                 <InputText
-                  id="email"
+                  id="lastName"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                 />
@@ -76,7 +93,6 @@ function register() {
                 <InputText
                   id="email"
                   value={email}
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <label htmlFor="username">Email</label>

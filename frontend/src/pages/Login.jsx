@@ -9,6 +9,8 @@ import { Password } from "primereact/password";
 import { Button } from "primereact/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,13 +23,28 @@ function Login() {
     axios.post('http://127.0.0.1:8000/api/login',userData)
       .then(response => {
         console.log(response.data)
+        setEmail('')
+        setPassword('')
+        navigate('/')
       })
       .catch(error=> {
-        console.log(error)
+        toast.error(error.message )
       })
   };
   return (
     <Container fluid className="vh-100">
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      />
       <Row className="header-container">
         <Col className="login-header w-100 h-100 d-flex align-items-center">
           <img src={Logo} alt="" className="login-logo" />
