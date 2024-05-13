@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
 //LAYOUT IMPORTS
 import UserLayout from "./layouts/UserLayout";
@@ -11,11 +11,35 @@ import Register from "./pages/Register";
 import SharedFiles from './pages/SharedFiles';
 import MyDrive from './pages/MyDrive';
 import Trash from './pages/Trash';
+import GuestLayout from "./layouts/GuestLayout";
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <GuestLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Navigate to="/login" />
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+    ]
+  },
+  
   {
     path: "/",
     element: <UserLayout />,
     children: [
+      {
+        path: "/",
+        element: <Navigate to="/home" />
+      },
       {
         path: "/home",
         element: <Home />,
@@ -34,14 +58,12 @@ const router = createBrowserRouter([
       },
     ],
   },
+
   {
-    path: "/login",
-    element: <Login />,
+    path: "*",
+    element: <Login /> //replace with 404 not found page
   },
-  {
-    path: "/register",
-    element: <Register />,
-  },
+  
 ]);
 
 export default router;

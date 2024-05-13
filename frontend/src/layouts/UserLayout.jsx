@@ -1,80 +1,99 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import "./UserLayout.css";
 import "primeicons/primeicons.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { faHardDrive } from "@fortawesome/free-regular-svg-icons";
-import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHome,
+  faHardDrive,
+  faUserGroup,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { Button } from "primereact/button";
 import Logo from "../images/logonimo.png";
 import profile from "../images/dog.jpg";
 import { Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import NewFolderModal from "../components/NewFolderModal"; // Import the modal component
-import UploadFileModal from "../components/UploadFileModal"; // Import the upload file modal component
-import UploadFolderModal from "../components/UploadFolderModal"; // Import the upload folder modal component
+import NewFolderModal from "../components/NewFolderModal";
+import UploadFileModal from "../components/UploadFileModal";
+import UploadFolderModal from "../components/UploadFolderModal";
 import { useLocation } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
+import axiosClient from "../axios-client";
+import { useStateContext } from "../contexts/ContextProvider";
+
 function UserLayout() {
+  const { setUser, setToken, user, token } = useStateContext();
   const location = useLocation();
   const pathname = location.pathname;
   const routeName = pathname.substring(1);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
-  const [isUploadFileModalOpen, setIsUploadFileModalOpen] = useState(false); // State to control upload file modal visibility
-  const [isUploadFolderModalOpen, setIsUploadFolderModalOpen] = useState(false); // State to control upload folder modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUploadFileModalOpen, setIsUploadFileModalOpen] = useState(false);
+  const [isUploadFolderModalOpen, setIsUploadFolderModalOpen] = useState(false);
   const open = Boolean(anchorEl);
+
+  useEffect(() => {
+    axiosClient.get("/user").then(({ data }) => {
+      setUser(data);
+    });
+  }, [setUser]);
+
+  
+  const handleLogout =  () => {
+    axiosClient
+      .post("/logout")
+      .then(() => {
+        setUser(null);
+        setToken(null);
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+      });
+  };
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const navigate = useNavigate();
 
-  // Function to open modal
   const handleOpenModal = () => {
     setIsModalOpen(true);
-    handleClose(); // Close the menu
+    handleClose();
   };
 
-  // Function to close modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
-  // Function to open upload file modal
   const handleOpenUploadFileModal = () => {
     setIsUploadFileModalOpen(true);
-    handleClose(); // Close the menu
+    handleClose();
   };
 
-  // Function to close upload file modal
   const handleCloseUploadFileModal = () => {
     setIsUploadFileModalOpen(false);
   };
 
-  // Function to open upload folder modal
   const handleOpenUploadFolderModal = () => {
     setIsUploadFolderModalOpen(true);
-    handleClose(); // Close the menu
+    handleClose();
   };
 
-  // Function to close upload folder modal
   const handleCloseUploadFolderModal = () => {
     setIsUploadFolderModalOpen(false);
   };
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/user')
-      .then(response => response.json())
-      .then(data => setUser(data))
-      .catch(error => console.error('Error fetching user:', error));
-  }, []);
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
+
 
   return (
     <Container fluid className="vh-100">
@@ -103,14 +122,22 @@ function UserLayout() {
               MenuListProps={{
                 "aria-labelledby": "basic-button",
               }}
-              style={{overflow:'hidden !importat'}}
+              style={{ overflow: "hidden !importat" }}
             >
-              <MenuItem onClick={handleOpenModal} className="NewFolderModal">New Folder</MenuItem>
-              <hr className="line"/>
-              <MenuItem onClick={handleOpenUploadFileModal} className="NewUploadFile">
+              <MenuItem onClick={handleOpenModal} className="NewFolderModal">
+                New Folder
+              </MenuItem>
+              <hr className="line" />
+              <MenuItem
+                onClick={handleOpenUploadFileModal}
+                className="NewUploadFile"
+              >
                 Upload File
               </MenuItem>
-              <MenuItem onClick={handleOpenUploadFolderModal} className="NewFolderFile">
+              <MenuItem
+                onClick={handleOpenUploadFolderModal}
+                className="NewFolderFile"
+              >
                 Upload Folder
               </MenuItem>
             </Menu>
@@ -126,7 +153,7 @@ function UserLayout() {
             </div>
             <div
               className="label"
-              tabindex="0"
+              tabIndex="0"
               onClick={() => navigate("/mydrive")}
             >
               <FontAwesomeIcon icon={faHardDrive} className="icon" />
@@ -134,7 +161,7 @@ function UserLayout() {
             </div>
             <div
               className="label"
-              tabindex="0"
+              tabIndex="0"
               onClick={() => navigate("/sharedwithme")}
             >
               <FontAwesomeIcon icon={faUserGroup} className="icon" />
@@ -142,7 +169,7 @@ function UserLayout() {
             </div>
             <div
               className="label"
-              tabindex="0"
+              tabIndex="0"
               onClick={() => navigate("/trash")}
             >
               <FontAwesomeIcon icon={faTrash} className="icon" />
@@ -163,12 +190,32 @@ function UserLayout() {
                   </div>
                   <input type="text" className="search-bar" />
                 </div>
-                {user && (
-                  <div className="w-100 h-100 d-flex align-items-center justify-content-end">
-                <div className="name-container d-flex justify-content-between">
-                    <div><label style={{color: 'white', fontSize:'15px', marginRight: '10px'}}>{user.firstName}</label></div>
-                    <div><label style={{color: 'white', fontSize:'15px', marginRight: '10px'}}>{user.lastName}</label></div>
-                </div>  
+
+                <div className="w-100 h-100 d-flex align-items-center justify-content-end">
+                  <div className="name-container d-flex justify-content-between">
+                    <div>
+                      <label
+                        style={{
+                          color: "white",
+                          fontSize: "15px",
+                          marginRight: "10px",
+                        }}
+                      >
+                        {user.firstName}
+                      </label>
+                    </div>
+                    <div>
+                      <label
+                        style={{
+                          color: "white",
+                          fontSize: "15px",
+                          marginRight: "10px",
+                        }}
+                      >
+                        {user.lastName}
+                      </label>
+                    </div>
+                  </div>
                   <div className="profile-container">
                     <div className="profile-pic w-100 h-100">
                       <Dropdown className="dropdown">
@@ -186,14 +233,17 @@ function UserLayout() {
                             left: 0,
                             width: "45px",
                             height: "45px",
-                            opacity: 0
+                            opacity: 0,
                           }}
                         ></Dropdown.Toggle>
                         <Dropdown.Menu className="menu-profile">
-                          <Dropdown.Item href="#/action-1" className="menu-label">
+                          <Dropdown.Item href="/profile" className="menu-label">
                             Profile
                           </Dropdown.Item>
-                          <Dropdown.Item href="#/action-2" className="menu-label">
+                          <Dropdown.Item
+                            onClick={handleLogout}
+                            className="menu-label"
+                          >
                             Log out
                           </Dropdown.Item>
                         </Dropdown.Menu>
@@ -201,8 +251,6 @@ function UserLayout() {
                     </div>
                   </div>
                 </div>
-                )}
-                
               </div>
             </Col>
           </Row>
@@ -213,14 +261,16 @@ function UserLayout() {
           </Row>
         </Col>
       </Row>
-      {/* Render the NewFolderModal component */}
+      <Row>
+        <Col>
+          <Outlet />
+        </Col>
+      </Row>
       <NewFolderModal isOpen={isModalOpen} onClose={handleCloseModal} />
-      {/* Render the UploadFileModal component */}
       <UploadFileModal
         isOpen={isUploadFileModalOpen}
         onClose={handleCloseUploadFileModal}
       />
-      {/* Render the UploadFolderModal component */}
       <UploadFolderModal
         isOpen={isUploadFolderModalOpen}
         onClose={handleCloseUploadFolderModal}

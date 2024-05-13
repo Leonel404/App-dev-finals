@@ -2,10 +2,22 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./Home.css";
 import Card from '../components/Card';
-
+import {ToastContainer, toast} from 'react-toastify'
 function Home() {
   return (
     <Container fluid className=" g-0">
+    <ToastContainer
+    position="top-right"
+    autoClose={5000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="dark"
+    />
       <Row className=" h-25 mb-3">
         <Col className="h-100">
           <div className="welcome">

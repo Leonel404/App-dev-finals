@@ -15,11 +15,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 //PROVIDER IMPORTS
 import { PrimeReactProvider } from "primereact/api";
+import { ContextProvider } from "./contexts/ContextProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <PrimeReactProvider>
+      <ContextProvider>
         <RouterProvider router={router} />
+      </ContextProvider>
     </PrimeReactProvider>
   </React.StrictMode>
 );
